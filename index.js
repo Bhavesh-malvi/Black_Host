@@ -45,7 +45,7 @@ app.use("/wishes", require("./routes/wishlistRoutes"));
 
 
 const port = process.env.PORT;
-const url = process.env.MONGODG_CONNECT_URL
+const url = process.env.Database_URL
 
 main().catch((err) => console.log(err));
 
