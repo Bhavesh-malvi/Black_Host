@@ -5,6 +5,7 @@ const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const dotenv = require("dotenv")
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -29,6 +30,7 @@ const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(cors({ corsOptions, corsOptions1 }));
+dotenv.config()
 // app.use(cors(corsOptions1));
 
 const cpUpload = upload.fields([
@@ -41,12 +43,16 @@ app.use("/users", cpUpload, require("./routes/productRoutes"));
 app.use("/carts", require("./routes/cartRoutes"));
 app.use("/wishes", require("./routes/wishlistRoutes"));
 
+
+const port = process.env.PORT;
+const url = process.env.MONGODG_CONNECT_URL
+
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/AdminData");
+  await mongoose.connect(url);
 }
 
-app.listen(8000, () => {
+app.listen(port, () => {
   console.log("server is created");
 });
