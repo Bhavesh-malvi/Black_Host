@@ -50,11 +50,13 @@ main().catch((err) => console.log(err));
 
 async function main() {
   // await mongoose.connect("mongodb://127.0.0.1:27017/AdminData");
-  await mongoose.connect("mongodb+srv://bhaveshmalviya335:malvi@cluster0.ogjbd6r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+  await mongoose.connect(
+    "mongodb+srv://bhaveshmalviya335:malvi@cluster0.ogjbd6r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  );
 }
 
-app.get("", () => {
-  resizeBy.json({
+app.get("", (req, res) => {
+  res.json({
     status: true,
   });
 });
