@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const cors = require("cors");                   
+const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
-const dotenv = require("dotenv")
+const dotenv = require("dotenv");
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -30,7 +30,7 @@ const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(cors({ corsOptions, corsOptions1 }));
-dotenv.config()
+dotenv.config();
 // app.use(cors(corsOptions1));
 
 const cpUpload = upload.fields([
@@ -43,15 +43,21 @@ app.use("/users", cpUpload, require("./routes/productRoutes"));
 app.use("/carts", require("./routes/cartRoutes"));
 app.use("/wishes", require("./routes/wishlistRoutes"));
 
-
 // const port = process.env.PORT;
 // const url = process.env.Database_URL
 
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/AdminData");
+  // await mongoose.connect("mongodb://127.0.0.1:27017/AdminData");
+  await mongoose.connect("mongodb+srv://bhaveshmalviya335:malvi@cluster0.ogjbd6r.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 }
+
+app.get("", () => {
+  resizeBy.json({
+    status: true,
+  });
+});
 
 app.listen(8000, () => {
   console.log("server is created");
