@@ -44,15 +44,15 @@ app.use("/carts", require("./routes/cartRoutes"));
 app.use("/wishes", require("./routes/wishlistRoutes"));
 
 
-const port = process.env.PORT;
-const url = process.env.Database_URL
+// const port = process.env.PORT;
+// const url = process.env.Database_URL
 
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(url);
+  await mongoose.connect("mongodb://127.0.0.1:27017/AdminData");
 }
 
-app.listen(port, () => {
+app.listen(8000, () => {
   console.log("server is created");
 });
